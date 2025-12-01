@@ -1,106 +1,74 @@
-AI Basketball Bot
+# 🏀 AI Basketball Bot
 
-Overview
+![Python](https://img.shields.io/badge/Python-3.10-blue) ![PyTorch](https://img.shields.io/badge/PyTorch-GPU-orange) ![License](https://img.shields.io/badge/License-MIT-green) ![Stars](https://img.shields.io/github/stars/rizaevv/bros-ai-bot)
 
-AI Basketball Bot is a computer vision and reinforcement learning project that detects basketball gameplay elements in real-time, including players, the ball, hoops, and the scoreboard. It can automatically determine when a player scores, combining YOLOv8 object detection, ball tracking, and OCR for score recognition.
+---
 
-This project demonstrates advanced object detection, temporal analysis, and game-state understanding, making it ideal for AI research, gaming analytics, and autonomous sports applications.
+## 🌟 Overview
 
-Features
+AI Basketball Bot is a **state-of-the-art computer vision and reinforcement learning project** designed to detect basketball gameplay elements in real-time. Using YOLOv8 for object detection, ball tracking, and OCR for score recognition, the bot can **automatically detect when a player scores** and provides a foundation for AI-driven gameplay analytics and autonomous decision-making.
 
-Object Detection: Detects players, ball, hoop, scoreboard, and enemies using YOLOv8.
+This project demonstrates advanced AI skills suitable for research, gaming analytics, and real-time applications, making it a standout project for college admissions and portfolios.
 
-Score Detection: Determines when a player scores by analyzing ball trajectory and scoreboard updates.
+---
 
-Reinforcement Learning Ready: Can integrate with RL agents for gameplay analysis or autonomous decision-making.
+## 🎯 Features
 
-Supports FHD Video: Optimized for full-HD images and videos.
+| Feature | Description |
+|---------|-------------|
+| 🏀 Object Detection | Detects ball, players, enemies, hoops, and scoreboard using YOLOv8. |
+| 📊 Score Detection | Combines ball trajectory + OCR on scoreboard to determine scored points automatically. |
+| 🎮 Reinforcement Learning Ready | Can integrate with RL agents for automated gameplay strategies. |
+| 📹 Full-HD Support | Optimized for FHD images and video streams. |
+| ⚡ GPU Acceleration | Leverages CUDA for fast real-time inference. |
 
-Installation
+---
 
-Clone the repository:
+## 🛠 Installation
 
+### 1️⃣ Clone the repository
+
+```bash
 git clone https://github.com/yourusername/bros-ai-bot.git
 cd bros-ai-bot
+```
 
-
-Create a virtual environment and activate it:
-
-python -m venv venv
-venv\Scripts\activate      # Windows
-# source venv/bin/activate  # Linux / macOS
-
-
-Install required packages:
-
+2️⃣ Create a virtual environment
+```python -m venv venv
+# Windows
+venv\Scripts\activate
+# Linux / macOS
+# source venv/bin/activate
+```
+3️⃣ Install dependencies
+```
 pip install --upgrade pip
 pip install -r requirements.txt
+```
 
+**🚀 Training YOLOv8**
+```
+yolo detect train data=basketball.yaml model=yolov8n.pt epochs=150 imgsz=1080 device=0
+```
 
-Make sure you have PyTorch with CUDA installed if you want GPU acceleration.
-
-Dataset
-
-The repository supports custom datasets in YOLO format:
-
-train/
-    images/
-    labels/
-valid/
-    images/
-    labels/
-test/
-    images/
-    labels/
-
-
-Label format: one bounding box per line:
-<class> <x_center> <y_center> <width> <height> (normalized 0–1)
-
-Usage
-1. Training YOLOv8
-yolo detect train data=basketball.yaml model=yolov8n.pt epochs=100 imgsz=1080 device=0
-
-
-device=0 for GPU, device=cpu for CPU.
-
-Trained weights will be saved in runs/detect/train/weights/best.pt.
-
-2. Running Inference
-from ultralytics import YOLO
-
-model = YOLO("runs/detect/train/weights/best.pt")
-results = model("example_image.png")[0]
-results.show()
-
-
-Returns bounding boxes, class labels, and confidence scores.
-
-3. Score Detection
-
-Integrates ball tracking + OCR on scoreboard region.
-
-Detects when a player scores automatically.
-
-Project Structure
+**📂PROJECT STRUCTURE**
+```
 bros-ai-bot/
-├── data/             # Sample images & labels
-├── notebooks/        # Jupyter experiments
-├── src/              # Scripts (training, inference, scoring)
-├── models/           # Trained models
-├── results/          # Example outputs (images, videos)
-├── README.md
+├── data/           # Sample images & labels
+├── notebooks/      # Jupyter experiments and visualizations
+├── src/            # Scripts: train_model.py, detect.py, score_detection.py
+├── models/         # Trained models: best.pt, last.pt
+├── results/        # Example outputs: images, videos, GIFs
+├── README.md       # This file
 ├── requirements.txt
 └── LICENSE
+```
 
-Contributing
+
+💡 Contributing
 
 Contributions welcome!
 
-Please submit bug reports or feature requests via GitHub Issues.
+Submit issues or feature requests on GitHub.
 
-Code style: follow Python best practices and PEP8.
-
-License
-
-MIT License – see LICENSE file for details.
+Follow PEP8 and Python best practices.
