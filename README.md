@@ -1,6 +1,6 @@
 # 🏀 AI Basketball Bot
 
-![Python](https://img.shields.io/badge/Python-3.10-blue) ![PyTorch](https://img.shields.io/badge/PyTorch-GPU-orange) ![License](https://img.shields.io/badge/License-MIT-green) ![Stars](https://img.shields.io/github/stars/rizaevv/bros-ai-bot)
+![Python](https://img.shields.io/badge/Python-3.10-blue) ![PyTorch](https://img.shields.io/badge/PyTorch-GPU-orange) ![License](https://img.shields.io/badge/License-MIT-green) ![Stars](https://img.shields.io/github/stars/rizaevv/bros-rl)
 
 ---
 
