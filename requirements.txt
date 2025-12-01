@@ -1,0 +1,8 @@
+ultralytics
+opencv-python
+mss
+pynput
+stable-baselines3
+gym
+numpy
+torch
