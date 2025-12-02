@@ -24,8 +24,9 @@ def main():
     elif args.mode == "play":
         print("Starting play mode...")
         # Load model and play
-        env = BasketballEnv()
-        obs, _ = env.reset()
+        # Agent already creates an env, so we can use that one or pass one.
+        # agent.env is available.
+        obs, _ = agent.env.reset()
         
         print("You have 5 seconds to switch to the game window...")
         time.sleep(5)
@@ -33,13 +34,13 @@ def main():
         try:
             while True:
                 action = agent.predict(obs)
-                obs, reward, done, truncated, info = env.step(action)
-                env.render()
+                obs, reward, done, truncated, info = agent.env.step(action)
+                agent.env.render()
                 if done or truncated:
-                    obs, _ = env.reset()
+                    obs, _ = agent.env.reset()
         except KeyboardInterrupt:
             print("Stopping...")
-            env.close()
+            agent.env.close()
 
 if __name__ == "__main__":
     main()

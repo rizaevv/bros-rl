@@ -45,7 +45,11 @@ class Agent:
             if os.path.exists(self.model_path + ".zip"):
                 self.model = PPO.load(self.model_path)
             else:
-                raise ValueError("Model not trained or loaded.")
+                # If no model exists, we can't predict. 
+                # For the purpose of the loop, we might return a random action or raise an error.
+                # But better to inform the user they need to train first.
+                print("Model not found. Returning random action.")
+                return self.env.action_space.sample()
         
         action, _states = self.model.predict(observation)
         return action

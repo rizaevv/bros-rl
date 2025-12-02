@@ -14,7 +14,7 @@ class KeyExecutor:
             "esc": Key.esc
         }
 
-    def press_key(self, key_name, duration=0.1):
+    def press_key(self, key_name, duration=0.01):
         """Presses a key for a specified duration."""
         if key_name not in self.key_map:
             print(f"Key {key_name} not found in key_map.")

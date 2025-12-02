@@ -40,13 +40,30 @@ class Detector:
         results = self.model(frame, verbose=False)
         return results
 
-    def get_observation(self, frame):
+    def get_detections(self, frame):
         """
-        Processes the frame and returns a simplified observation.
-        For now, we can return the raw frame or a processed version.
-        Ideally, this would return positions of key objects.
+        Returns a list of detected objects with their class, confidence, and bounding box.
+        Format: [{'class': 'ball', 'conf': 0.9, 'bbox': [x1, y1, x2, y2], 'center': (cx, cy)}, ...]
         """
-        # For a simple visual RL agent, we might just return the frame itself
-        # or a resized grayscale version.
-        # Let's return the frame for now, the Env will handle resizing/normalization.
-        return frame
+        results = self.detect(frame)
+        detections = []
+        
+        for r in results:
+            boxes = r.boxes
+            for box in boxes:
+                cls_id = int(box.cls[0])
+                cls_name = config.YOLO_CLASSES.get(cls_id, str(cls_id))
+                conf = float(box.conf[0])
+                xyxy = box.xyxy[0].tolist()
+                x1, y1, x2, y2 = xyxy
+                center_x = (x1 + x2) / 2
+                center_y = (y1 + y2) / 2
+                
+                detections.append({
+                    'class': cls_name,
+                    'class_id': cls_id,
+                    'conf': conf,
+                    'bbox': xyxy,
+                    'center': (center_x, center_y)
+                })
+        return detections
